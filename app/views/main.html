@@ -1,0 +1,32 @@
+<div class="mainWrapper">
+  <div class="row">
+    <div class="col-sm-4">
+      <input type="text" class="form-control" name="" value="" ng-model="searchKey">
+    </div>
+    <div class="col-sm-2">
+      <button class="btn btn-default" type="button" name="button" ng-click="getResult()">GO</button>
+    </div>
+    <div class="col-sm-6">
+      <select ng-disabled="countries.length == 0" class="form-control" name="" ng-model="eventCountry" ng-change="filterData(eventCountry)">
+        <option value="">Select Country</option>
+        <option ng-repeat="country in countries" value="{{country}}" >{{ country }}</option>
+      </select>
+    </div>
+  </div>
+  <div class="result">
+    <div class="" ng-repeat="event in filteredEvent">
+      <div class="row">
+        <div class="col-sm-9">
+          Name: {{ event.lineup[0] }}<br/>
+          Date: {{ event.datetime }}<br/>
+          Vanue:  {{ event.venue.city }}, {{ event.venue.country }}<br/>
+        </div>
+        <div class="col-sm-3">
+          <button ng-show="event.status" type="button" name="button" ui-sref="bookticket({id:event.id})" class="btn btn-primary">Book Ticket</button>
+          <button ng-show="!event.status" disabled type="button" name="button" ui-sref="bookticket({id:event.id})" class="btn btn-danger">SOLD OUT</button>
+        </div>
+      </div>
+      <hr>
+    </div>
+  </div>
+</div>
